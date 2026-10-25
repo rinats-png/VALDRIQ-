@@ -1,0 +1,16 @@
+services:
+  valdriq:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8765:8765"
+    volumes:
+      - valdriq-data:/app/data
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      VALDRIQ_HOST: 0.0.0.0
+      VALDRIQ_DB: /app/data/valdriq.db
+volumes:
+  valdriq-data:
